@@ -22,7 +22,7 @@ public class HomePage {
 
     public MyAccountPage openMyAccountPage() {
         myAccountLink.click();
-        return new MyAccountPage();
+        return new MyAccountPage(driver);
     }
 
     public ProductListPage openShopPage() {

@@ -14,6 +14,7 @@ public class CheckoutTest extends BaseTest {
         Customer customer = new Customer();
         // We can override hardcoded default values set in Customer class
         customer.setPhone("345678908");
+
         OrderDetailsPage orderDetailsPage = new HomePage(driver)
                 .openShopPage()
                 .openProduct("Java Selenium WebDriver")

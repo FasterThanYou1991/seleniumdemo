@@ -30,7 +30,7 @@ public class MyAccountPage {
 
     private WebDriver driver;
 
-    public MyAccountPage() {
+    public MyAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
