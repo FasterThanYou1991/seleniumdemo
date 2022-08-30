@@ -13,6 +13,9 @@ public class HomePage {
     @FindBy(xpath = "//span[text()='Shop']")
     private WebElement shopLink;
 
+    @FindBy(xpath = "//span[text()='Cart']")
+    private WebElement cartLink;
+
     private WebDriver driver;
 
     public HomePage(WebDriver driver) {
@@ -28,5 +31,10 @@ public class HomePage {
     public ProductListPage openShopPage() {
         shopLink.click();
         return new ProductListPage(driver);
+    }
+
+    public CartPage openCartPage(){
+        cartLink.click();
+        return new CartPage(driver);
     }
 }

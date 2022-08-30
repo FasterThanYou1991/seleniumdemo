@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CartPage {
 
@@ -18,7 +20,13 @@ public class CartPage {
     }
 
     public AddressDetailsPage openAddressDetails() {
+        waitForClickable(proceedToCheckoutButton,driver);
         proceedToCheckoutButton.click();
         return new AddressDetailsPage(driver);
+    }
+
+    public static void waitForClickable(WebElement element, WebDriver driver){
+        WebDriverWait wait = new WebDriverWait(driver, 10L);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }
