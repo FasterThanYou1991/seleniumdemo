@@ -7,23 +7,21 @@ import org.testng.annotations.Test;
 
 public class RegisterTest extends BaseTest {
 
-    @Test
+    @Test(priority = 1)
     public void registerUser() {
-        int randomNumber = (int) (Math.random() * 1000);
-        String email = "Tester" + randomNumber + "@tester.pl";
         WebElement dashboardLink = new HomePage(driver)
                 .openMyAccountPage()
-                .registerUserValidData(email, "tester0@tester.pl")
+                .registerUserValidData()
                 .getDashboardLink();
 
         Assert.assertEquals(dashboardLink.getText(), "Dashboard");
     }
 
-    @Test
+    @Test(priority = 2)
     public void registerWithSameEmailTest() {
         WebElement error = new HomePage(driver)
                 .openMyAccountPage()
-                .registerUserInvalidData("tester1@tester1.pl", "tester1@tester1.pl")
+                .registerUserInvalidData()
                 .getError();
 
         Assert.assertTrue(error.getText().contains("An account is already registered with your email address. Please log in."));

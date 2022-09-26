@@ -25,7 +25,7 @@ public class LogInTest extends BaseTest {
         }
     }
 
-/*    @Test
+    @Test
     public void logInWithInvalidPasswordTest() {
         WebElement error = new HomePage(driver)
                 .openMyAccountPage()
@@ -41,5 +41,5 @@ public class LogInTest extends BaseTest {
         } else {
             System.out.println("");
         }
-    }*/
+    }
 }
