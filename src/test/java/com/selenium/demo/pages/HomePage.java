@@ -1,13 +1,16 @@
 package com.selenium.demo.pages;
 
+import com.selenium.demo.utils.SeleniumHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
+import java.util.List;
 
-    @FindBy(xpath = "//span[text()='My account']")
+public class HomePage extends SeleniumHelper {
+
+    @FindBy(xpath = "//li[@id='menu-item-22']//span[@class='nav__title']")
     private WebElement myAccountLink;
 
     @FindBy(xpath = "//span[text()='Shop']")
