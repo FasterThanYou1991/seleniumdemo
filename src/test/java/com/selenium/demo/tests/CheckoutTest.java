@@ -44,4 +44,11 @@ public class CheckoutTest extends BaseTest {
         b = cartPage.checkProduct();
         Assert.assertEquals(a, b);
         }
+    @Test
+    public void selectProduct(){
+        HomePage homePage = new HomePage(driver);
+        homePage.openShopPage();
+        ProductListPage productListPage = new ProductListPage(driver);
+        productListPage.getProduct();
     }
+}

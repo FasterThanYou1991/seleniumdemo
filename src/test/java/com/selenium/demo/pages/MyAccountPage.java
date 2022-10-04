@@ -2,6 +2,7 @@ package com.selenium.demo.pages;
 
 import com.selenium.demo.utils.SeleniumHelper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +16,7 @@ public class MyAccountPage extends SeleniumHelper {
     @FindBy(id = "reg_password")
     private WebElement regPasswordInput;
 
-    @FindBy(xpath = "//button[@type='submit' and text()='Register']")
+    @FindBy(name = "register")
     private WebElement registerButton;
 
     @FindBy(xpath = "//ul[@class='woocommerce-error']//li")
@@ -32,7 +33,7 @@ public class MyAccountPage extends SeleniumHelper {
 
     private WebDriver driver;
     private final String emailAccount = randomEmail();
-    private final String passwordAccount = randomPassword();
+    private final String passwordAccount = "Tester500@tester";
 
     public MyAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -56,6 +57,7 @@ public class MyAccountPage extends SeleniumHelper {
         regEmailInput.sendKeys(emailAccount);
         regPasswordInput.click();
         regPasswordInput.sendKeys(passwordAccount);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
         registerButton.click();
     }
 
@@ -63,29 +65,26 @@ public class MyAccountPage extends SeleniumHelper {
         return error;
     }
 
-    public LoggedUserPage loginValidData(String username, String password) {
-        logIn(username, password);
+    public LoggedUserPage loginValidData(String st) {
+        usernameInput.sendKeys(st);
+        passwordInput.sendKeys(passwordAccount);
+        loginButton.click();
         return new LoggedUserPage(driver);
     }
 
-    public MyAccountPage loginInvalidData(String username, String password) {
-        logIn(username, password);
+    public MyAccountPage loginInvalidData(String username) {
+        logIn(username);
         return this;
     }
 
-    private void logIn(String username, String password) {
+    private void logIn(String username) {
         usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
+        passwordInput.sendKeys(passwordAccount);
         loginButton.click();
     }
 
     public String randomEmail(){
         int randomNumber = (int) (Math.random() * 1000);
         return "Tester" + randomNumber + "@tester.pl";
-    }
-
-    public String randomPassword(){
-        int randomNumber = (int) (Math.random() * 1000);
-        return "Tester" + randomNumber + "@tester";
     }
 }

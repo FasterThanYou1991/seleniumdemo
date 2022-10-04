@@ -23,6 +23,12 @@ public class ProductListPage extends SeleniumHelper {
     @FindBy(xpath = "//a[@title='View cart']")
     private List<WebElement> viewCart;
 
+    @FindBy(css = "a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart")
+    private WebElement addToCartButtons;
+
+    @FindBy(css = "h2.woocommerce-loop-product__title")
+    private String productNames;
+
     private WebDriver driver;
 
     public ProductListPage(WebDriver driver) {
@@ -47,5 +53,8 @@ public class ProductListPage extends SeleniumHelper {
         waitMethod("//h2[@class='woocommerce-loop-product__title' and text()='BDD Cucumber']", driver);
         WebElement courseName = driver.findElement(By.xpath("//h2[@class='woocommerce-loop-product__title' and text()='BDD Cucumber']"));
         return courseName.getText();
+    }
+    public void getProduct(){
+        nameMatchHelper(driver, "h2.woocommerce-loop-product__title", "Selenium", "//a[text()='Add to cart']");
     }
 }

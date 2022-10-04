@@ -2,22 +2,25 @@ package com.selenium.demo.tests;
 
 import com.selenium.demo.utils.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.WindowType;
+import org.testng.annotations.*;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    protected WebDriver driver;
+    WebDriver driver;
 
-    @BeforeMethod
+    @BeforeSuite
     public void setUp() {
         driver = DriverFactory.getDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
         driver.get("http://seleniumdemo.com/");
     }
 
-    @AfterMethod
+    //@AfterSuite
     public void tearDown() {
         driver.quit();
     }
