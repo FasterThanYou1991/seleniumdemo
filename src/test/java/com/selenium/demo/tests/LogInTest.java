@@ -44,4 +44,11 @@ public class LogInTest extends BaseTest {
             System.out.println("");
         }
     }
+
+    @Test
+    public void openAllDashboardLinks(){
+        registerThenLogInTest();
+        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
+        loggedUserPage.getDashboardLinksInNewTab();
+    }
 }
